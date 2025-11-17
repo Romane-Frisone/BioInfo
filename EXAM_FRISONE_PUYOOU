@@ -1,0 +1,70 @@
+# script examen 17/11/05
+
+
+
+# PARTIE 1  Linux basics
+
+## Acceder au cluster  
+ssh tpXXXXXX@core.cluster.france-bioinformatique.fr
+srun --pty bash
+module load xxx
+## access shared folder with exam dataset:
+cd /shared/projects/tp_2556_intro_pop_gen_182845
+
+
+
+## placer les fichiers dans "finalexam"
+cp Details_Barcode_Population_SRR034310.txt ~/finalexam
+cp SRR034310_10pc.fastq ~/finalexam
+cp Reference_genome_chrI.fasta ~/finalexam
+
+## Explore file content with bash commands using and report: 
+
+## How many lines are in the fastq file?
+
+wc -l SRR034310_10pc.fastq 
+## 3564012 SRR034310_10pc.fastq
+
+## What is the read length?
+
+cat SRR034310_10pc.fastq | head
+
+@SRR034310.20 4_1_946_1783 length=36
+GGTTTGCAGGCAGCAATCGAGTGAAGATCGTTGTGT
++
+IIIIIII8HIIIIIIIIIIIIIIIIIIIIIIIIIII
+@SRR034310.34 4_1_1204_1643 length=36
+GGAATGCAGGAGGAGCTGATGGGATTGTCTGGAGAA
++
+IIIIIII6@@IIIIIIIIIIIIIIIIIIIIIIIIII
+@SRR034310.42 4_1_1264_1607 length=36
+GGTTTGCAGGAGAGAGTTACAGGAGTCCAGGAGGGA
+
+# la longueur des read est de 36 nuclééotides !
+
+##How many barcodes are in Details_Barcode_Population_SRR034310?
+
+cat Details_Barcode_Population_SRR034310.txt | head
+
+CCCC	BearPaw1
+CCAA	BearPaw2
+CCTT	BearPaw3
+CCGG	BearPaw4
+CACA	BearPaw5
+CAAC	BearPaw6
+CATG	BearPaw7
+CAGT	BearPaw8
+CTCT	RabbitSlough1
+CTAG	RabbitSlough2
+
+# ici on a un Barcode par ligne, on va donc demander le nombr de lignes pour obtenir le nombre de Barcodes du fichier 
+
+wc -l Details_Barcode_Population_SRR034310.txt 
+
+16 Details_Barcode_Population_SRR034310.txt
+
+# PARTIE 2 
+
+
+
+
