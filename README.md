@@ -5,7 +5,7 @@
 ##  2 — Quality control
 **Goal:** Understand how to inspect raw sequencing reads using a standard quality-control tool.
 
-*1.	Run FastQC on the fastq file.*
+**_1.	Run FastQC on the fastq file._**
 
 ```
 cp SRR034310_10pc.fastq ./fastqc_v0.12.1/FastQC/ # copie le fichier de donnée dans le dossier de FastQC
@@ -13,13 +13,13 @@ cd fast/fastqc_v0.12.1/FastQC/ # on se place dans le dossier FastQC pour faire t
 ./fastqc SRR034310_10pc.fastq # on utilise fastqc sur notre jeu de données 
 ```
 
-*2.	On your github, in markdown:*  
-  *o	Include screenshots or saved HTML summaries*  
-  *o	Describe in plain language:*  
-      *-	sequence length distribution*  
-      *-	quality drop at 5' and 3' ends of reads (if any)*  
-      *- presence of adapters*  
-      *-	overrepresented sequences*  
+**_2.	On your github, in markdown:_**  
+  **_o	Include screenshots or saved HTML summaries_**  
+  **_o	Describe in plain language:_**  
+      **_-	sequence length distribution_**  
+      **_-	quality drop at 5' and 3' ends of reads (if any)_**  
+      **_- presence of adapters_**  
+      **_-	overrepresented sequences_**  
 
 ![Tableau représentant les statistiques basiques de notre fichier fastq](/plots/FastQC_Basic-Statistics.png)
 
@@ -43,9 +43,10 @@ Le graphique témoignant de la présence d'adaptateurs dans les séquences de no
 Le tableau montre que **nous avons des séquences surreprésentées dans notre fichier** 'SRR034310_10pc.fastq'. Ces séquences représentent une faible portions des séquences totales de notre fichier (approximativement 0.17%, 0.14% et 0.14%, soit au total 0.45% des séquences totales). Les séquences sont composées essentiellement de N, ce qui représente que le séquenceur n'a pas réussi à déterminer les bases présentes. De plus, comme aucune correspondance n'est établie avec ces séquences, il s'emblerait qu'il s'agisse simplement d'un problème technique (la suspiçion de contaminations peut être éliminée). Ces reads devraient être enlevés pour la suite des analyses. 
 
 
-*3.	which restriction enzyme was used to create these data?* 
+**_3.	which restriction enzyme was used to create these data?_**
 
+L'enzyme utilisée pour obtenir ces données est **_SbfI_** du fait de son site de restriction retrouvé à la suite de tous les codes barres pour chacune de nos séquences (TGCAGG).
 
+**_4.	what is the 4 nt sequence preceeding the enzyme overhang?_**
 
-
-*4.	what is the 4 nt sequence preceeding the enzyme overhang?*
+La séquence de 4 nucléotides précédant le site de restrcition de l'enzyme est la séquence du **code barre** ajouté en laboratoire par ligation afin de pouvoir identifier les individus des échantillons tout en les pollant tous pour effectuer le séquence de plusieurs individus en simultanné. Cela permet de les reconnaitre par la suite notamment pour les traitements bioinformatiques des données. 
