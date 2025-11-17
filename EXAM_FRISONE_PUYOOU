@@ -1,7 +1,5 @@
 # script examen 17/11/05
 
-
-
 # PARTIE 1  Linux basics
 
 ## Acceder au cluster  
@@ -11,7 +9,9 @@ module load xxx
 ## access shared folder with exam dataset:
 cd /shared/projects/tp_2556_intro_pop_gen_182845
 
-
+# on crée la direction "finalexam"
+mkdir finalexam
+cd finalexam
 
 ## placer les fichiers dans "finalexam"
 cp Details_Barcode_Population_SRR034310.txt ~/finalexam
@@ -63,7 +63,33 @@ wc -l Details_Barcode_Population_SRR034310.txt
 
 16 Details_Barcode_Population_SRR034310.txt
 
-# PARTIE 2 
+# PARTIE 2 : Quality control
+## Goal: Understand how to inspect raw sequencing reads using a standard quality-control tool.
+Tasks
+
+## Run FastQC on the fastq file.
+## On your github, in markdown:
+
+        Include screenshots or saved HTML summaries
+
+
+        Describe in plain language:
+            sequence length distribution
+            quality drop at 5' and 3' ends of reads (if any)
+            presence of adapters
+            overrepresented sequences
+    which restriction enzyme was used to create these data?
+    what is the 4 nt sequence preceeding the enzyme overhang?
+
+
+
+
+grep -A2 -B2 "^GGCC" SRR034310_10pc.fastq |sed '/--/d'>Rabbit8.fastq
+
+
+
+
+
 
 
 
