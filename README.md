@@ -308,7 +308,7 @@ Cette fonction permet donc d'appliquer une quantité de filtres correspondant à
 La sortie du terminal indique : **After filtering, kept 4 out of a possible 127 Sites**.  
 Nous n'avons donc plus que 4 SNPs (ou variants) dans nos données qui correspondent à tous ces critères. 
 
-**Tableau récapitulatif des sites variants : 
+**Tableau récapitulatif des sites variables :**
 |  | Avant filtration  | Après filtration |
 | --- | --- | --- |
 | Nombre de sites | 127 | 4 |
