@@ -287,5 +287,3 @@ tp183380@cpu-node-5:~/finalexam$ samtools flagstat RabbitSlough8_sorted.bam
 0 + 0 singletons (N/A : N/A)
 0 + 0 with mate mapped to a different chr
 0 + 0 with mate mapped to a different chr (mapQ>=5)
-tp183380@cpu-node-5:~/finalexam$ ^C
-tp183380@cpu-node-5:~/finalexam$ faidx Reference_genome_chrI.fasta 
