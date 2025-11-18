@@ -512,7 +512,7 @@ Ce graphe permet de montrer les valeurs de Fst obtenues pour chaque locus entre 
 
 - La variation dans la couverture de séquençage entre individus contribue aux données manquantes.
 - RADseq séquence seulement les régions adjacentes aux sites de restriction, ces sites peuvent varier entre individus.
-- Mutations ou polymorphismes aux sites de restriction ? (empecherait ligation des adaptateurs --> l’absence de certaines séquences dans certains individus)
+- Mutations ou polymorphismes aux sites de restriction ? (empecherait ligation des adaptateurs --> absence de certaines séquences dans certains individus)
     
 **_3. Pourquoi est-il important d'appliquer un filtrage SNP avant les analyses de génomique des populations ?_**
 
