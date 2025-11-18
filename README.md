@@ -308,6 +308,11 @@ Cette fonction permet donc d'appliquer une quantité de filtres correspondant à
 La sortie du terminal indique : **After filtering, kept 4 out of a possible 127 Sites**.  
 Nous n'avons donc plus que 4 SNPs (ou variants) dans nos données qui correspondent à tous ces critères. 
 
+**Tableau récapitulatif des sites variants : 
+|  | Avant filtration  | Après filtration |
+| --- | --- | --- |
+| Nombre de sites | 127 | 4 |
+
 **_6. En utilisant ```vfctools```, calcule_**  
 **_o les fréquences des allèles ```allele frequences``` (en utilisant les options ```--freq --out allele_freqs```)_**  
 **_o les FST par sites entre les deux populations (créer des fichiers de popualtions basés sur ```Details_Barcode_Population_SRR034310```)(utilise l'option ```--weir-fst-pop```)_**  
