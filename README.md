@@ -149,9 +149,9 @@ grep -B1 -A2 "^GGAA" SRR034310_10pc.fastq | sed '/^--$/d'>RabbitSlough6.fastq
 grep -B1 -A2 "^GGTT" SRR034310_10pc.fastq | sed '/^--$/d'>RabbitSlough7.fastq
 grep -B1 -A2 "^GGCC" SRR034310_10pc.fastq | sed '/^--$/d'>RabbitSlough8.fastq
 ```
-```- B1``` est utilisé pour pour garder la ligne précédant celle qui comporte CCCC (correspont à la ligne avec le nom de la séquence)
-```- A2``` est utilisé pour garder les deux lignes qui suivent (+ et valeurs de qualité)
-```- sed``` est utilisé pour enlever les ```--``` que l'on obtient entre chacune de nos séquences
+```- B1``` est utilisé pour pour garder la ligne précédant celle qui comporte CCCC (correspont à la ligne avec le nom de la séquence)  
+```- A2``` est utilisé pour garder les deux lignes qui suivent (+ et valeurs de qualité)  
+```- sed``` est utilisé pour enlever les ```--``` que l'on obtient entre chacune de nos séquences  
 
 Avec la commande ```ls```, on peut vérifier que nos 16 fichiers (un pour chaque individu) ont bien été créés.
 
