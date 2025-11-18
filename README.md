@@ -74,7 +74,7 @@ wc -l Details_Barcode_Population_SRR034310.txt
 OUTPUT : 16 Details_Barcode_Population_SRR034310.txt  
 Il y a donc 16 barcodes dans ce fichier.
 
-##  2 — Controle de qualité
+## Partie 2 — Controle de qualité
 **Objectif:** Comprendre comment inspecter les reads bruts issus du séquençage avec un outil de controle qualité.
 
 **_1.	Utilise FastQC sur le fichier fastq_**
@@ -370,6 +370,17 @@ On s'attend a environ 80% de reads qui matchent. Donc si on a 10000 reads, on s'
 C'est l'ordre de grandeur que l'on obtient !  
 Consulter les statistiques de mapping ici :
 [Mapping statistics](mapping/Mapping%20statistics)
+
+Interprétation des statistiques de mapping :  
+  
+Les fichiers BAM triés des 16 échantillons présentent entre 15 000 et 130 000 reads. Le pourcentage de reads alignés sur la référence (chrI) est compris entre 6 % et 8 % pour tous les échantillons. Ce taux relativement bas est attendu, car l’alignement a été réalisé sur un seul chromosome (chrI) et non sur l’ensemble du génome de l’organisme. Les reads provenant des autres chromosomes ne peuvent donc pas s’aligner, ce qui réduit mécaniquement le pourcentage global.  
+Aucun duplicat n’est détecté et tous les reads présents sont classés comme primary, ce qui confirme la bonne qualité des fichiers et du processus d’alignement.  
+
+Pourquoi les génomes marins présentent souvent un pourcentage de mapping plus faible ?  
+--> Les génomes marins présentent souvent des pourcentages de mappage plus faibles en raison de plusieurs facteurs :
+- Ils contiennent fréquemment de nombreux éléments répétitifs, ce qui complique l’alignement des lectures.
+- La diversité génétique au sein des populations marines est élevée, entraînant une divergence entre l’échantillon et le génome de référence.
+- Les génomes marins sont parfois incomplets ou mal annotés, ce qui réduit encore le mappage. 
 
 ## Partie 5 — Appel des SNP / Variant calling
 
