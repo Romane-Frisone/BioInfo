@@ -74,24 +74,23 @@ wc -l Details_Barcode_Population_SRR034310.txt
 OUTPUT : 16 Details_Barcode_Population_SRR034310.txt  
 Il y a donc 16 barcodes dans ce fichier.
 
-## Partie 2 — Quality control
-**Goal:** Understand how to inspect raw sequencing reads using a standard quality-control tool.
+##  2 — Controle de qualité
+**Objectif:** Comprendre comment inspecter les reads bruts issus du séquençage avec un outil de controle qualité.
 
-**_1.	Run FastQC on the fastq file._**
+**_1.	Utilise FastQC sur le fichier fastq_**
 
 ```
 cp SRR034310_10pc.fastq ./fastqc_v0.12.1/FastQC/ # copie le fichier de donnée dans le dossier de FastQC
 cd fast/fastqc_v0.12.1/FastQC/ # on se place dans le dossier FastQC pour faire tourner la fonction 
 ./fastqc SRR034310_10pc.fastq # on utilise fastqc sur notre jeu de données 
-```
-
-**_2.	On your github, in markdown:_**  
-  **_o	Include screenshots or saved HTML summaries_**  
-  **_o	Describe in plain language:_**  
-      **_-	sequence length distribution_**  
-      **_-	quality drop at 5' and 3' ends of reads (if any)_**  
-      **_- presence of adapters_**  
-      **_-	overrepresented sequences_**  
+```    
+**_2.	Sur le github, en markdown:_**  
+  **_o Inclure des captures d’écran ou des résumés HTML enregistrés_**  
+  **_o Décrire en termes simples :_**  
+      **_-	la distribution de la longueur des séquences_**  
+      **_-	la baisse de qualité aux extrémités 5' et 3' des lectures (le cas échéant)_**  
+      **_- la présence d’adaptateurs_**  
+      **_-	les séquences surreprésentées_**  
 
 ![Tableau représentant les statistiques basiques de notre fichier fastq](/plots/FastQC_Basic-Statistics.png)
 
@@ -114,13 +113,15 @@ Le graphique témoignant de la présence d'adaptateurs dans les séquences de no
 
 Le tableau montre que **nous avons des séquences surreprésentées dans notre fichier** 'SRR034310_10pc.fastq'. Ces séquences représentent une faible portions des séquences totales de notre fichier (approximativement 0.17%, 0.14% et 0.14%, soit au total 0.45% des séquences totales). Les séquences sont composées essentiellement de N, ce qui représente que le séquenceur n'a pas réussi à déterminer les bases présentes. De plus, comme aucune correspondance n'est établie avec ces séquences, il s'emblerait qu'il s'agisse simplement d'un problème technique (la suspiçion de contaminations peut être éliminée). Ces reads devraient être enlevés pour la suite des analyses. 
 
-**_3.	which restriction enzyme was used to create these data?_**
+
+**_3. Quelle enzyme de restriction a été utilisée pour créer ces données ?_**
 
 L'enzyme utilisée pour obtenir ces données est **_SbfI_** du fait de son site de restriction retrouvé à la suite de tous les codes barres pour chacune de nos séquences (TGCAGG).
 
-**_4.	what is the 4 nt sequence preceeding the enzyme overhang?_**
+**_4.	Quelle est la séquence de 4 nucléotides précédant le site de restriction de l'enzyme ?_**
 
 La séquence de 4 nucléotides précédant le site de restrcition de l'enzyme est la séquence du **code barre** ajouté en laboratoire par ligation afin de pouvoir identifier les individus des échantillons tout en les poolant tous pour effectuer le séquence de plusieurs individus en simultanné. Cela permet de les reconnaitre par la suite notamment pour les traitements bioinformatiques des données. 
+
 
 ##  Partie 3 — Démultiplexage à l’aide des Barcodes
 **Goal:** Utiliser des commandes Linux classiques pour séparer les reads du fichier SRR034310_10pc.fastq.
@@ -259,29 +260,29 @@ Les 4 premiers nucléotides (correspondants aux Barcodes) sont retirés. En util
 A FINIR :)       (partie 4 + rapper Barcoding dans partie 3) 
 Bonne nuit !  
 
-## Part 5 — Calling SNPs
+## Partie 5 — Appel des SNP / Variant calling
 
-**_1. Index your reference for_** 
+**_1. Indexez votre référence pour_** 
 
 ```samtools faidx Reference_genome_chrI.fasta```
 
 Cette ligne de commande permet d'obtenir l'index du fichier dans le fichier 'Reference_genome_chrI.fasta.fai'. Cela permet de savoir exactement où est ce que l'on cherche pour les analyses. 
 
-**_2. Create a ```vcf``` folder and enter it._**
+**_2. Créez un dossier ```vcf``` et placez y vous._**
 
 ```
 mkdir vcf # création du dossieur vcf
 cd vcf #on se place dans le dossier vcf
 ```
 
-**_3. Call variants from the two BAM files_**
+**_3. Variant calling a partir des fichiers BAM_**
 
 ```
 bcftools mpileup -Ou -f ../Reference_genome_chrI.fasta ../BearPaw1_sorted.bam ../BearPaw2_sorted.bam ../BearPaw3_sorted.bam ../BearPaw4_sorted.bam ../BearPaw5_sorted.bam ../BearPaw6_sorted.bam ../BearPaw7_sorted.bam ../BearPaw8_sorted.bam ../RabbitSlough1_sorted.bam ../RabbitSlough2_sorted.bam ../RabbitSlough3_sorted.bam ../RabbitSlough4_sorted.bam ../RabbitSlough5_sorted.bam ../RabbitSlough6_sorted.bam ../RabbitSlough7_sorted.bam ../RabbitSlough8_sorted.bam | bcftools call -mv -Ov -o raw_variants.vcf
 ```
-Cette ligne permet de créer un fichier 'raw_variants.vcf' contenant toutes les variations obtenues par rapport au génome de référence et à partir des alignements bam triées de tous nos individus. Ce fichier indique les variants qui correspondent à chaque séquence et leur position par rapport à la séquence du génome de référence. 
+Cette ligne permet de créer un fichier 'raw_variants.vcf' contenant toutes les variations obtenues par rapport au génome de référence et à partir des alignements bam triées de tous nos individus. Ce fichier indique les variants qui correspondent à chaque séquence et leur position par rapport à la séquence du génome de référence.  
 
-**_4. How many SNPs did you call ?_** 
+**_4. Combien de SNP avez-vous analysés ?_**  
 
 ```vcftools --vcf raw_variants.vcf --freq```
 
@@ -290,9 +291,9 @@ Nous avons donc 127 SNPs (ou variants) dans nos données.
 
 De plus, cette fonction permet de connaitre la fréquence de chaque allèle. 
 
-**_5. Using ```vfctools```, filter SNPs, using :_**   
-```vcftools --vcf raw_variants.vcf --minDP 5 --max-missing 1 --min-alleles 2 --max-alleles 2 --recode --out filtered```  
-**_Explain what this command is doing. How many SNPs remain ?_**
+**_5. En utilisant ```vfctools```, filtre les SNPs, en utilisant la commande suivante :_**   
+**_```vcftools --vcf raw_variants.vcf --minDP 5 --max-missing 1 --min-alleles 2 --max-alleles 2 --recode --out filtered```_**  
+**_Expliquez le rôle de cette commande. Combien de SNP restent-ils ?_**
 
 ```vcftools``` est l'outil qui permet de manipuler les fichiers vcf  
 ```--vcf raw_variants.vcf``` permet d'appeler notre fichier vcf qui est le fichier contenant toutes les variations de nos séquences  et que l'on va filtrer
@@ -307,9 +308,9 @@ Cette fonction permet donc d'appliquer une quantité de filtres correspondant à
 La sortie du terminal indique : **After filtering, kept 4 out of a possible 127 Sites**.  
 Nous n'avons donc plus que 4 SNPs (ou variants) dans nos données qui correspondent à tous ces critères. 
 
-**_6. Using ```vfctools```, compute_**  
-**_o ```allele frequencies``` (use the ```--freq --out allele_freqs option```)_**  
-**_o per-site FST between two populations (create pop files based on ```Details_Barcode_Population_SRR034310```)(use the ```--weir-fst-pop option```)_**  
+**_6. En utilisant ```vfctools```, calcule_**  
+**_o les fréquences des allèles ```allele frequences``` (en utilisant les options ```--freq --out allele_freqs```)_**  
+**_o les FST par sites entre les deux populations (créer des fichiers de popualtions basés sur ```Details_Barcode_Population_SRR034310```)(utilise l'option ```--weir-fst-pop```)_**  
 
 ```
 vcftools --vcf raw_variants.vcf --freq --out allele_freqs 
@@ -345,7 +346,7 @@ EOF
 ```
 Ces commandes ont permis de créer les fichiers représentant le nom des individus de deux populations (Bear et Rabbit) afin de calculer par la suite les FST de Weir et Cockerham pour chaque locus entre ces deux populations. Le fichier 'fst_pop.fst', récapitule les différentes valeurs de FST ainsi que la position des locus considérés sur le chromosome I considéré ici. 
 
-**_7. Visualize (in R) allele frequencies and FST values._**
+**_7. Visualise (dans R) les fréquences des allèles et les valeurs de FST._**
 
 Pour répondre à cette question, nous avons importé les fichiers obtenus dans le cluster et les avons chargés avec R dans RStudio en local. 
 Concernant la premmière partie de cette question, nous n'avons pas réussi à importer les données correctement dans R et de fait n'avons pas pu représenter les fréquences alléliques. 
@@ -369,26 +370,27 @@ plot(FST_pop_clean$POS, FST_pop_clean$WEIR_AND_COCKERHAM_FST,
 
 Ce graphe permet de montrer les valeurs de Fst obtenues pour chaque locus entre nos deux populations Rabbit et Bear en les représentant le long du chromosome I. 
 
-## Part 6 — Concept interpretation
+## Part 6 — Interpretation des concepts
 
-   **_1. What is the difference between coverage and depth of coverage?_**
+   **_1. Quelle est la différence entre la couverture et la profondeur de couverture?_**
 
    
-   **_2. Why do RADseq datasets contain many loci with missing data?_**
+   **_2. Pourquoi les jeux de données RADseq contiennent-ils de nombreux loci avec des données manquantes ?_**
 
     
-   **_3. Why is it important to apply SNP filtering before population genomic analyses?_**
+   **_3. Pourquoi est-il important d'appliquer un filtrage SNP avant les analyses de génomique des populations ?_**
 
    Il important et même nécessaire d'appliquer des filtres sur les SNPs pour les analyses en génomique afin de :  
    - n'avoir que les séquences des individus que l'on souhaite étudier (et non pas des contaminants, fragments chimériques dûs à la PCR, séquences d'adapatateurs uniquement par exemples)
    - avoir des séquences représentatives de la diversité réelle au sein de la population ou entre populations (éviter la surestimation du polymorphisme du fait d'erreurs de PCRs, meilleure estimation des fréquences alléliques)  
  - garder des informations de qualité (enlever les séquences de moins bonnes quallités ne permettant pas d'être sûrs permet de réduire les temps de calculs). 
    
-   **_4. What is an outlier locus? Give a definition from CM1._**
+   **_4. Qu'est-ce qu'un outlier locus ? Donnez une définition tirée du CM1._**
 
 Un locus outlier est un locus qui se comporte différemment de la majorité du génome, il se démarque notamment par ses valeurs de Fst qui sont supérieures aux autres lors de comparaisons entre populations (du fait potentiellement d'une sélection positive liée à de  la sélection naturelle ou d'une adaptation locale par exemples). 
 
-   **_5. Give an example of a marine organism where genomic scans detected islands of differentiation._**
+   **_5. Donnez un exemple d'organisme marin chez lequel des analyses génomiques ont détecté des îlots de différenciation._**
 
 Un ilot de différenciation a été détecté chez le Bar en comparant des populations provenant de l'Atlantique et de la Mediterranée. Cette région du génome présentait un fort Fst témoignage d'un signal probable de sélection positive. 
 
+![Diapositive du CM1 montrant un exmeple d'ilot de différenciation avec les test outliers](/plots/CM1_Exemple-ilot-differenciation.png)
