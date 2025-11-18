@@ -368,5 +368,26 @@ plot(FST_pop_clean$POS, FST_pop_clean$WEIR_AND_COCKERHAM_FST,
 
 Ce graphe permet de montrer les valeurs de Fst obtenues pour chaque locus entre nos deux populations Rabbit et Bear en les représentant le long du chromosome I. 
 
+## Part 6 — Concept interpretation
 
+   **_1. What is the difference between coverage and depth of coverage?_**
+
+   
+   **_2. Why do RADseq datasets contain many loci with missing data?_**
+
+    
+   **_3. Why is it important to apply SNP filtering before population genomic analyses?_**
+
+   Il important et même nécessaire d'appliquer des filtres sur les SNPs pour les analyses en génomique afin de :  
+   - n'avoir que les séquences des individus que l'on souhaite étudier (et non pas des contaminants, fragments chimériques dûs à la PCR, séquences d'adapatateurs uniquement par exemples)
+   - avoir des séquences représentatives de la diversité réelle au sein de la population ou entre populations (éviter la surestimation du polymorphisme du fait d'erreurs de PCRs, meilleure estimation des fréquences alléliques)  
+ - garder des informations de qualité (enlever les séquences de moins bonnes quallités ne permettant pas d'être sûrs permet de réduire les temps de calculs). 
+   
+   **_4. What is an outlier locus? Give a definition from CM1._**
+
+Un locus outlier est un locus qui se comporte différemment de la majorité du génome, il se démarque notamment par ses valeurs de Fst qui sont supérieures aux autres lors de comparaisons entre populations (du fait potentiellement d'une sélection positive liée à de  la sélection naturelle ou d'une adaptation locale par exemples). 
+
+   **_5. Give an example of a marine organism where genomic scans detected islands of differentiation._**
+
+Un ilot de différenciation a été détecté chez le Bar en comparant des populations provenant de l'Atlantique et de la Mediterranée. Cette région du génome présentait un fort Fst témoignage d'un signal probable de sélection positive. 
 
