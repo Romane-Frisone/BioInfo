@@ -226,21 +226,21 @@ Récapitulatif des OUTPUTs :
 **_3. Retirer les Barcodes qui ont servi au démultiplexage, à l'aide de la fonction seqtk_**
 ```
 seqtk trimfq -b 4 BearPaw1.fastq > BearPaw1_trimmed.fastq
- seqtk trimfq -b 4 BearPaw2.fastq > BearPaw2_trimmed.fastq
- seqtk trimfq -b 4 BearPaw3.fastq > BearPaw3_trimmed.fastq
- seqtk trimfq -b 4 BearPaw4.fastq > BearPaw4_trimmed.fastq
- seqtk trimfq -b 4 BearPaw5.fastq > BearPaw5_trimmed.fastq
- seqtk trimfq -b 4 BearPaw6.fastq > BearPaw6_trimmed.fastq
- seqtk trimfq -b 4 BearPaw7.fastq > BearPaw7_trimmed.fastq
- seqtk trimfq -b 4 BearPaw8.fastq > BearPaw8_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough1.fastq > RabbitSlough1_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough2.fastq > RabbitSlough2_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough3.fastq > RabbitSlough3_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough4.fastq > RabbitSlough4_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough5.fastq > RabbitSlough5_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough6.fastq > RabbitSlough6_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough7.fastq > RabbitSlough7_trimmed.fastq
- seqtk trimfq -b 4 RabbitSlough8.fastq > RabbitSlough8_trimmed.fastq
+seqtk trimfq -b 4 BearPaw2.fastq > BearPaw2_trimmed.fastq
+seqtk trimfq -b 4 BearPaw3.fastq > BearPaw3_trimmed.fastq
+seqtk trimfq -b 4 BearPaw4.fastq > BearPaw4_trimmed.fastq
+seqtk trimfq -b 4 BearPaw5.fastq > BearPaw5_trimmed.fastq
+seqtk trimfq -b 4 BearPaw6.fastq > BearPaw6_trimmed.fastq
+seqtk trimfq -b 4 BearPaw7.fastq > BearPaw7_trimmed.fastq
+seqtk trimfq -b 4 BearPaw8.fastq > BearPaw8_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough1.fastq > RabbitSlough1_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough2.fastq > RabbitSlough2_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough3.fastq > RabbitSlough3_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough4.fastq > RabbitSlough4_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough5.fastq > RabbitSlough5_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough6.fastq > RabbitSlough6_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough7.fastq > RabbitSlough7_trimmed.fastq
+seqtk trimfq -b 4 RabbitSlough8.fastq > RabbitSlough8_trimmed.fastq
 ```
 Les 4 premiers nucléotides (correspondants aux Barcodes) sont retirés. En utilisant la fonction head sur nos fichiers "trimmed", on peut vérifier que nos reads ne comptent plus que 36-4 = 32 nucléotides.
 
