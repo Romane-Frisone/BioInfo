@@ -260,6 +260,7 @@ Les 4 premiers nucléotides (correspondants aux Barcodes) sont retirés. En util
 A FINIR :)       (partie 4 + rapper Barcoding dans partie 3) 
 Bonne nuit !  
 
+
 ## Partie 5 — Appel des SNP / Variant calling
 
 **_1. Indexez votre référence pour_** 
@@ -313,6 +314,7 @@ Nous n'avons donc plus que 4 SNPs (ou variants) dans nos données qui correspond
 | --- | --- | --- |
 | Nombre de sites | 127 | 4 |
 
+
 **_6. En utilisant ```vfctools```, calcule_**  
 **_o les fréquences des allèles ```allele frequences``` (en utilisant les options ```--freq --out allele_freqs```)_**  
 **_o les FST par sites entre les deux populations (créer des fichiers de popualtions basés sur ```Details_Barcode_Population_SRR034310```)(utilise l'option ```--weir-fst-pop```)_**  
@@ -351,6 +353,7 @@ EOF
 ```
 Ces commandes ont permis de créer les fichiers représentant le nom des individus de deux populations (Bear et Rabbit) afin de calculer par la suite les FST de Weir et Cockerham pour chaque locus entre ces deux populations. Le fichier 'fst_pop.fst', récapitule les différentes valeurs de FST ainsi que la position des locus considérés sur le chromosome I considéré ici. 
 
+
 **_7. Visualise (dans R) les fréquences des allèles et les valeurs de FST._**
 
 Pour répondre à cette question, nous avons importé les fichiers obtenus dans le cluster et les avons chargés avec R dans RStudio en local. 
@@ -374,6 +377,8 @@ plot(FST_pop_clean$POS, FST_pop_clean$WEIR_AND_COCKERHAM_FST,
 ![Graphique représentant la distribution des valeurs de FST entre les populations Rabbit et Bear sur le chromosome I](/plots/R_Distribution-Valeurs-FST.png)
 
 Ce graphe permet de montrer les valeurs de Fst obtenues pour chaque locus entre nos deux populations Rabbit et Bear en les représentant le long du chromosome I. 
+
+
 
 ## Part 6 — Interpretation des concepts
 
