@@ -516,10 +516,10 @@ Ce graphe permet de montrer les valeurs de Fst obtenues pour chaque locus entre 
     
    **_3. Pourquoi est-il important d'appliquer un filtrage SNP avant les analyses de génomique des populations ?_**
 
-   Il important et même nécessaire d'appliquer des filtres sur les SNPs pour les analyses en génomique afin de :  
-   - n'avoir que les séquences des individus que l'on souhaite étudier (et non pas des contaminants, fragments chimériques dûs à la PCR, séquences d'adapatateurs uniquement par exemples)
-   - avoir des séquences représentatives de la diversité réelle au sein de la population ou entre populations (éviter la surestimation du polymorphisme du fait d'erreurs de PCRs, meilleure estimation des fréquences alléliques)  
- - garder des informations de qualité (enlever les séquences de moins bonnes quallités ne permettant pas d'être sûrs permet de réduire les temps de calculs). 
+Il important et même nécessaire d'appliquer des filtres sur les SNPs pour les analyses en génomique afin de :  
+- n'avoir que les séquences des individus que l'on souhaite étudier (et non pas des contaminants, fragments chimériques dûs à la PCR, séquences d'adapatateurs uniquement par exemples)
+- avoir des séquences représentatives de la diversité réelle au sein de la population ou entre populations (éviter la surestimation du polymorphisme du fait d'erreurs de PCRs, meilleure estimation des fréquences alléliques)  
+- garder des informations de qualité (enlever les séquences de moins bonnes quallités ne permettant pas d'être sûrs permet de réduire les temps de calculs). 
    
    **_4. Qu'est-ce qu'un outlier locus ? Donnez une définition tirée du CM1._**
 
