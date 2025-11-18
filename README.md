@@ -127,8 +127,8 @@ La séquence de 4 nucléotides précédant le site de restrcition de l'enzyme es
 **Goal:** Utiliser des commandes Linux classiques pour séparer les reads du fichier SRR034310_10pc.fastq.
 
 RAPPEL :  Le Barcoding  
-Le barcoding est une technique qui consiste à marquer des échantillons d’ADN avec de courtes séquences uniques, appelées Barcodes (souvent 4 à 12 nucléotides).
-
+Le barcoding est une technique qui consiste à marquer des échantillons d’ADN avec de courtes séquences uniques, appelées Barcodes (souvent 4 à 12 nucléotides).  
+Ces barcodes permettent d’identifier chaque read lors d'un séquençage massif par exemple, où plusieurs échantillons sont mélangés. Ainsi, on peut analyser simultanément de nombreux échantillons tout en conservant la traçabilité de chaque séquence.
 
 **_1. Création de 16 nouveaux fichiers FASTQ, un pour chaque échantillon, en utilisant les informations de Details_Barcode_Population_SRR034310._**
 ```
