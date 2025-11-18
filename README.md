@@ -369,11 +369,7 @@ samtools flagstat RabbitSlough8_sorted.bam
 On s'attend a environ 80% de reads qui matchent. Donc si on a 10000 reads, on s'attend à 8000 matchs. Et sachant qu'on a un seul chromosome, on s'attend à ce qu'il n'y ait plus que 10% qui matchent donc environ 800.  
 C'est l'ordre de grandeur que l'on obtient !  
 Consulter les statistiques de mapping ici :
-
-[Mapping statistics](Mapping%20statistics)
-
-
-
+[Mapping statistics](mapping/Mapping%20statistics)
 
 ## Partie 5 — Appel des SNP / Variant calling
 
