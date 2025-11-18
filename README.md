@@ -3,7 +3,7 @@
 ### 19 Novembre 2025
 
 ##  Partie 1 — Bases de Linux
-**Goal:** maitriser les commandes et opérations basiques.
+**Objectif:** maitriser les commandes et opérations basiques.
 
 **_1. Connexion au cluster, organisation de l'espace de travail, chargement des fichiers_**
 
@@ -29,9 +29,9 @@ module load vcftools/0.1.16
 ```
 cd /shared/projects/tp_2556_intro_pop_gen_182845
 ```
-**_o Créer une direction "finalexam"_**
+**_o Créer un dossier "finalexam"_**
 
-(Créer une direction "finalexam" nous permet d'y placer les fichiers, afin de ne pas travailler sur l'espace partagé, commun à tous les étudiants.)
+(Créer un dossier "finalexam" nous permet d'y placer les fichiers, afin de ne pas travailler sur l'espace partagé, commun à tous les étudiants.)
 ```
 mkdir finalexam # Création du dossier
 ls # vérification que le dossier à bien été créé
@@ -46,22 +46,22 @@ cd ~/finalexam
 ls
 ```
 
-**_2. exploration de contenu des fichiers avec bash_**
+**_2. Exploration de contenu des fichiers avec bash_**
 
 **_o Combien y a-t-il de lignes dans le fichier fastq ?_**
 ```
  wc -l SRR034310_10pc.fastq
 ```
-OUTPUT : 3564012 SRR034310_10pc.fastq  
-Le fichier fastq contient  3564012 lignes.
+Sortie du terminal : 3564012 SRR034310_10pc.fastq  
+Le fichier fastq contient  **3564012 lignes**.
 
 **_o Quelle est la longueur de read ?_**
 ```
 cat SRR034310_10pc.fastq | head
 ```
-OUTPUT :  
+Sortie du terminal  :  
 <img width="268" height="134" alt="image" src="https://github.com/user-attachments/assets/fb618ff2-063d-4070-9e28-51a4e9529179" />  
-La longueur de read est de 36 nucléotides.
+La longueur de read est de **36 nucléotides**.
 
 **_o Combien de codes-barres y a-t-il dans le fichier Details_Barcode_Population_SRR034310 ?_**
 ```
@@ -71,8 +71,8 @@ cat Details_Barcode_Population_SRR034310.txt | head
 ```
 wc -l Details_Barcode_Population_SRR034310.txt
 ```
-OUTPUT : 16 Details_Barcode_Population_SRR034310.txt  
-Il y a donc 16 barcodes dans ce fichier.
+Sortie du terminal  : 16 Details_Barcode_Population_SRR034310.txt  
+Il y a donc **16 barcodes** dans ce fichier.
 
 ## Partie 2 — Controle de qualité
 **Objectif:** Comprendre comment inspecter les reads bruts issus du séquençage avec un outil de controle qualité.
@@ -94,7 +94,7 @@ cd fast/fastqc_v0.12.1/FastQC/ # on se place dans le dossier FastQC pour faire t
 
 ![Tableau représentant les statistiques basiques de notre fichier fastq](/plots/FastQC_Basic-Statistics.png)
 
-Notre fichier 'SRR034310_10pc.fastq' a été obtenu par séquença ge Sanger / Illumina. Il continent un total et 891 003 séquences et 32Mbp de bonne qualité (aucune des séquences n'a été marquée comme de mauvaise qualité). Les séquences ont une longueur de 36 nucléotide et leur % en GC est de 54. 
+Notre fichier 'SRR034310_10pc.fastq' a été obtenu par séquençage Sanger / Illumina. Il continent un total et 891 003 séquences et 32Mbp de bonne qualité (aucune des séquences n'a été marquée comme étant de mauvaise qualité). Les séquences ont une longueur de 36 nucléotides et leur % en GC est de 54. 
 
 ![Graphique représentant la distribution de la taille des séquences de notre fichier fastq](/plots/FastQC_Sequence-Length-Distribution.png)
 
@@ -103,7 +103,7 @@ Le graphique représentant la distribution de la taille des séquences contenues
 ![Graphique représentant la qualité du séquençage pour chaque base](/plots/FastQC_Per-Base-Sequence-quality.png)
 
 Les boites à moustaches représentant la qualité de toutes les bases séquencées le long de la séquence montrent des **différences de qualité selon la position des bases**. 
-En effet, pour les 4 premières bases (correspondant aux codes barres), les séquences ont la qualité maximale (40). On observe ensuite une diminution de qualité pour les bases 5 à 11 ce qui correspond certainement à un problème d'amorçage sur cette zone. Pour finir, on obersve une diminution progressive de la qualité lorsque l'on s'approche de la fin des séquences (fin des reads vers 25 à 36 bp). Ce dernier phénomène est classique avec ce type de séquançage. 
+En effet, pour les 4 premières bases (correspondant aux codes barres), les séquences ont la qualité maximale (40). On observe ensuite une diminution de qualité pour les bases 5 à 11 ce qui correspond certainement à un problème d'amorçage sur cette zone. Pour finir, on observe une diminution progressive de la qualité lorsque l'on s'approche de la fin des séquences (fin des reads vers 25 à 36 bp). Ce dernier phénomène est classique avec ce type de séquençage. 
 
 ![Graphique représentant la présence d'adaptateurs dans nos séquences](/plots/FastQC_Adapter-Content.png)
 
@@ -111,26 +111,26 @@ Le graphique témoignant de la présence d'adaptateurs dans les séquences de no
 
 ![Tableau représentant les séquences surreprésentées](/plots/FastQC_Overrepresented-Sequences.png)
 
-Le tableau montre que **nous avons des séquences surreprésentées dans notre fichier** 'SRR034310_10pc.fastq'. Ces séquences représentent une faible portions des séquences totales de notre fichier (approximativement 0.17%, 0.14% et 0.14%, soit au total 0.45% des séquences totales). Les séquences sont composées essentiellement de N, ce qui représente que le séquenceur n'a pas réussi à déterminer les bases présentes. De plus, comme aucune correspondance n'est établie avec ces séquences, il s'emblerait qu'il s'agisse simplement d'un problème technique (la suspiçion de contaminations peut être éliminée). Ces reads devraient être enlevés pour la suite des analyses. 
+Le tableau montre que **nous avons des séquences surreprésentées dans notre fichier** 'SRR034310_10pc.fastq'. Ces séquences représentent une faible portion des séquences totales de notre fichier (approximativement 0.17%, 0.14% et 0.14%, soit au total 0.45% des séquences totales). Les séquences sont composées essentiellement de N, ce qui représente que le séquenceur n'a pas réussi à déterminer les bases présentes. De plus, comme aucune correspondance n'est établie avec ces séquences, il semblerait qu'il s'agisse simplement d'un problème technique (la suspiçion de contamination peut être éliminée). Ces reads devraient être enlevés pour la suite des analyses. 
 
 
 **_3. Quelle enzyme de restriction a été utilisée pour créer ces données ?_**
 
-L'enzyme utilisée pour obtenir ces données est **_SbfI_** du fait de son site de restriction retrouvé à la suite de tous les codes barres pour chacune de nos séquences (TGCAGG).
+L'enzyme utilisée pour obtenir ces données est **_SbfI_** du fait de son site de restriction retrouvé à la suite de tous les codes barres pour chacune de nos séquences (*TGCAGG*).
 
 **_4.	Quelle est la séquence de 4 nucléotides précédant le site de restriction de l'enzyme ?_**
 
-La séquence de 4 nucléotides précédant le site de restrcition de l'enzyme est la séquence du **code barre** ajouté en laboratoire par ligation afin de pouvoir identifier les individus des échantillons tout en les poolant tous pour effectuer le séquence de plusieurs individus en simultanné. Cela permet de les reconnaitre par la suite notamment pour les traitements bioinformatiques des données. 
+La séquence de 4 nucléotides précédant le site de restrcition de l'enzyme est la séquence du **code barre** ajouté en laboratoire par ligation afin de pouvoir identifier les individus des échantillons tout en les poolant tous pour effectuer le séquence de plusieurs individus en simultanné. Cela permet de les reconnaitre par la suite notamment pour les traitements bioinformatiques des données et ainsi de pouvoir les séparer pour les analyses. 
 
 
 ##  Partie 3 — Démultiplexage à l’aide des Barcodes
-**Goal:** Utiliser des commandes Linux classiques pour séparer les reads du fichier SRR034310_10pc.fastq.
+**Objectif:** Utiliser des commandes Linux classiques pour séparer les reads du fichier 'SRR034310_10pc.fastq'.
 
-RAPPEL :  Le Barcoding  
+*RAPPEL :  Le Barcoding*
 Le barcoding est une technique qui consiste à marquer des échantillons d’ADN avec de courtes séquences uniques, appelées Barcodes (souvent 4 à 12 nucléotides).  
 Ces barcodes permettent d’identifier chaque read lors d'un séquençage massif par exemple, où plusieurs échantillons sont mélangés. Ainsi, on peut analyser simultanément de nombreux échantillons tout en conservant la traçabilité de chaque séquence.
 
-**_1. Création de 16 nouveaux fichiers FASTQ, un pour chaque échantillon, en utilisant les informations de Details_Barcode_Population_SRR034310._**
+**_1. Création de 16 nouveaux fichiers FASTQ, un pour chaque échantillon, en utilisant les informations de 'Details_Barcode_Population_SRR034310'._**
 ```
 grep -B1 -A2 "^CCCC" SRR034310_10pc.fastq | sed '/^--$/d'>BearPaw1.fastq
 grep -B1 -A2 "^CCAA" SRR034310_10pc.fastq | sed '/^--$/d'>BearPaw2.fastq
@@ -149,11 +149,11 @@ grep -B1 -A2 "^GGAA" SRR034310_10pc.fastq | sed '/^--$/d'>RabbitSlough6.fastq
 grep -B1 -A2 "^GGTT" SRR034310_10pc.fastq | sed '/^--$/d'>RabbitSlough7.fastq
 grep -B1 -A2 "^GGCC" SRR034310_10pc.fastq | sed '/^--$/d'>RabbitSlough8.fastq
 ```
-- B1 est utilisé pour pour garder la ligne au dessus de celle qui comporte CCCC (la ligne avec le nom de la séquence)
-- A2 est utilisé pour garder les deux lignes qui suivent (+ et valeurs de qualité)
-- sed est utilisé pour enlever les -- que l'on obtient entre chacune de nos séquencés
+```- B1``` est utilisé pour pour garder la ligne précédant celle qui comporte CCCC (correspont à la ligne avec le nom de la séquence)
+```- A2``` est utilisé pour garder les deux lignes qui suivent (+ et valeurs de qualité)
+```- sed``` est utilisé pour enlever les ```--``` que l'on obtient entre chacune de nos séquences
 
-Avec la commande ls, on peut vérifier que nos 16 fichiers (un pour chaque individu) ont bien été créés.
+Avec la commande ```ls```, on peut vérifier que nos 16 fichiers (un pour chaque individu) ont bien été créés.
 
 **_2. Quel est le nombre de reads assignés à chaque échantillon_**
 
@@ -161,71 +161,56 @@ Pour obtenir cette information, on divise le nombre de lignes de chaque fichier 
 ```
 nseq=$((`wc -l < BearPaw1.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < BearPaw2.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < BearPaw3.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < BearPaw4.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < BearPaw5.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < BearPaw6.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < BearPaw7.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < BearPaw8.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough1.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough2.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough3.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough4.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough5.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough6.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough7.fastq` / 4))
 echo $nseq
-```
-```
+
 nseq=$((`wc -l < RabbitSlough8.fastq` / 4))
 echo $nseq
 ```
-Récapitulatif des OUTPUTs :  
+Récapitulatif des sorties du terminal :  
 <img width="305" height="122" alt="image" src="https://github.com/user-attachments/assets/125a4aaf-0e02-4230-be34-39596e52f7b7" />
 
-**_3. Retirer les Barcodes qui ont servi au démultiplexage, à l'aide de la fonction seqtk_**
+**_3. Retirer les Barcodes qui ont servi au démultiplexage, à l'aide de la fonction ```seqtk```_**
 ```
 seqtk trimfq -b 4 BearPaw1.fastq > BearPaw1_trimmed.fastq
 seqtk trimfq -b 4 BearPaw2.fastq > BearPaw2_trimmed.fastq
@@ -244,12 +229,12 @@ seqtk trimfq -b 4 RabbitSlough6.fastq > RabbitSlough6_trimmed.fastq
 seqtk trimfq -b 4 RabbitSlough7.fastq > RabbitSlough7_trimmed.fastq
 seqtk trimfq -b 4 RabbitSlough8.fastq > RabbitSlough8_trimmed.fastq
 ```
-Les 4 premiers nucléotides (correspondants aux Barcodes) sont retirés. En utilisant la fonction head sur nos fichiers "trimmed", on peut vérifier que nos reads ne comptent plus que 36-4 = 32 nucléotides.
+Les 4 premiers nucléotides (correspondants aux Barcodes) sont retirés. En utilisant la fonction ```head``` sur nos fichiers "trimmed", on peut vérifier que nos reads ne comptent plus que 36-4 = 32 nucléotides.
 
 
 
 ##  Partie 4 — Alignement sur un génome de référence
-**Goal:** Comprendre les notions de base de l’indexation et de l’alignement.
+**Objectif:** Comprendre les notions de base de l’indexation et de l’alignement.
 
 **_1. Indexer la référence_**
 
@@ -258,7 +243,7 @@ On souhaite préparer le génome de référence pour permettre un alignement rap
 bwa-mem2 index Reference_genome_chrI.fasta 
 ```
 **_2. Mapper chaque fichier FASTQ démultiplexé_**  
-Autrement dit, on soihaite aligner chaque FASTQ démultiplexé sur le génome de référence.
+Autrement dit, on souhaite aligner chaque FASTQ démultiplexé sur le génome de référence.
 ```
 bwa-mem2 mem Reference_genome_chrI.fasta BearPaw1_trimmed.fastq > BearPaw1.sam
 bwa-mem2 mem Reference_genome_chrI.fasta BearPaw2_trimmed.fastq > BearPaw2.sam
@@ -343,9 +328,9 @@ samtools view -bS RabbitSlough8.sam > RabbitSlough8.bam
 samtools sort RabbitSlough8.bam -o RabbitSlough8_sorted.bam
 samtools index RabbitSlough8_sorted.bam
 ```
-view -bS :  transforme le fichier SAM en BAM (la version binaire moins lourde et plus pratique pour les calculs mais pas lisible par l’homme)  
-sort : trie les reads par position sur le génome  
-index : crée un index pour accéder rapidement aux reads (fichier BAI pour BAM Index)
+```view -bS``` :  transforme le fichier SAM en BAM (la version binaire moins lourde et plus pratique pour les calculs mais pas lisible par l’homme)  
+```sort``` : trie les reads par position sur le génome  
+```index``` : crée un index pour accéder rapidement aux reads (fichier BAI pour BAM Index)
 
 **_4. Calculer les statistiques de mapping_**
 ```
@@ -366,7 +351,7 @@ samtools flagstat RabbitSlough6_sorted.bam
 samtools flagstat RabbitSlough7_sorted.bam
 samtools flagstat RabbitSlough8_sorted.bam
 ```
-On s'attend a environ 80% de reads qui matchent. Donc si on a 10000 reads, on s'attend à 8000 matchs. Et sachant qu'on a un seul chromosome, on s'attend à ce qu'il n'y ait plus que 10% qui matchent donc environ 800.  
+On s'attend a environ 80% de reads qui matchent. Donc si on a 10 000 reads, on s'attend à 8 000 matchs. Et sachant qu'on a un seul chromosome, on s'attend à ce qu'il n'y ait plus que 10% qui matchent donc environ 800.  
 C'est l'ordre de grandeur que l'on obtient !  
 Consulter les statistiques de mapping ici :
 [Mapping statistics](mapping/Mapping%20statistics)
@@ -376,11 +361,11 @@ Interprétation des statistiques de mapping :
 Les fichiers BAM triés des 16 échantillons présentent entre 15 000 et 130 000 reads. Le pourcentage de reads alignés sur la référence (chrI) est compris entre 6 % et 8 % pour tous les échantillons. Ce taux relativement bas est attendu, car l’alignement a été réalisé sur un seul chromosome (chrI) et non sur l’ensemble du génome de l’organisme. Les reads provenant des autres chromosomes ne peuvent donc pas s’aligner, ce qui réduit mécaniquement le pourcentage global.  
 Aucun duplicat n’est détecté et tous les reads présents sont classés comme primary, ce qui confirme la bonne qualité des fichiers et du processus d’alignement.  
 
-Pourquoi les génomes marins présentent souvent un pourcentage de mapping plus faible ?  
+**_Pourquoi les génomes marins présentent souvent un pourcentage de mapping plus faible ?_**   
 --> Les génomes marins présentent souvent des pourcentages de mappage plus faibles en raison de plusieurs facteurs :
-- Ils contiennent fréquemment de nombreux éléments répétitifs, ce qui complique l’alignement des lectures.
-- La diversité génétique au sein des populations marines est élevée, entraînant une divergence entre l’échantillon et le génome de référence.
-- Les génomes marins sont parfois incomplets ou mal annotés, ce qui réduit encore le mappage. 
+- Ils contiennent fréquemment de nombreux **éléments répétitifs**, ce qui complique l’alignement des lectures.
+- La diversité génétique au sein des populations marines est élevée, entraînant une **divergence entre l’échantillon et le génome de référence**.
+- Les génomes marins sont parfois **incomplets ou mal annotés**, ce qui réduit encore le mappage. 
 
 ## Partie 5 — Appel des SNP / Variant calling
 
@@ -388,7 +373,7 @@ Pourquoi les génomes marins présentent souvent un pourcentage de mapping plus 
 
 ```samtools faidx Reference_genome_chrI.fasta```
 
-Cette ligne de commande permet d'obtenir l'index du fichier dans le fichier 'Reference_genome_chrI.fasta.fai'. Cela permet de savoir exactement où est ce que l'on cherche pour les analyses. 
+Cette ligne de commande permet d'obtenir l'index du fichier dans le fichier 'Reference_genome_chrI.fasta.fai'. Cela permet de savoir exactement où est ce que l'on cherche pour la réalisation des analyses. 
 
 **_2. Créez un dossier ```vcf``` et placez y vous._**
 
@@ -443,7 +428,7 @@ Nous n'avons donc plus que 4 SNPs (ou variants) dans nos données qui correspond
 ```
 vcftools --vcf raw_variants.vcf --freq --out allele_freqs 
 ```
-Cette commande permet d'obtenir un fichier allele_freqs.frq donnant la fréquence de chacun des allèles. 
+Cette commande permet d'obtenir un fichier 'allele_freqs.frq' donnant la fréquence de chacun des allèles. 
 
 ```
 touch popbear.txt # Création d'un fichier texte contenant les noms appartenant à la population Bear
@@ -478,7 +463,7 @@ Ces commandes ont permis de créer les fichiers représentant le nom des individ
 **_7. Visualise (dans R) les fréquences des allèles et les valeurs de FST._**
 
 Pour répondre à cette question, nous avons importé les fichiers obtenus dans le cluster et les avons chargés avec R dans RStudio en local. 
-Concernant la premmière partie de cette question, nous n'avons pas réussi à importer les données correctement dans R et de fait n'avons pas pu représenter les fréquences alléliques. 
+Concernant la première partie de cette question, nous n'avons pas réussi à importer les données correctement dans R et de fait n'avons pas pu représenter les fréquences alléliques. 
 
 /!\ Ces codes sont donc écrits en R : 
 
@@ -505,8 +490,8 @@ Ce graphe permet de montrer les valeurs de Fst obtenues pour chaque locus entre 
 
 **_1. Quelle est la différence entre la couverture et la profondeur de couverture?_** 
    
- - Couverture : Proportion du génome ou des loci cibles qui est effectivement séquencée au moins une fois. Mesure l’étendue du génome couvert par les lectures.
- - Profondeur de couverture : Nombre moyen de lectures qui couvrent chaque position ou locus. Elle indique la redondance des lectures pour chaque site, ce qui influence la fiabilité des appels de variants (plus une position est lue de fois, plus on est sûr que le variant observé est réel et pas une erreur de séquençage).
+ - **Couverture** : Proportion du génome ou des loci cibles qui est effectivement séquencée au moins une fois. Mesure l’étendue du génome couvert par les lectures.
+ - **Profondeur de couverture** : Nombre moyen de lectures qui couvrent chaque position ou locus. Elle indique la redondance des lectures pour chaque site, ce qui influence la fiabilité des appels de variants (plus une position est lue de fois, plus on est sûr que le variant observé est réel et pas une erreur de séquençage).
 
 **_2. Pourquoi les jeux de données RADseq contiennent-ils de nombreux loci avec des données manquantes ?_**
 
@@ -523,9 +508,9 @@ Il important et même nécessaire d'appliquer des filtres sur les SNPs pour les 
    
 **_4. Qu'est-ce qu'un outlier locus ? Donnez une définition tirée du CM1._**
 
-Un locus outlier est un locus qui se comporte différemment de la majorité du génome, il se démarque notamment par ses valeurs de Fst qui sont supérieures aux autres lors de comparaisons entre populations (du fait potentiellement d'une sélection positive liée à de  la sélection naturelle ou d'une adaptation locale par exemples). 
+Un locus outlier est un locus qui se comporte différemment de la majorité du génome, il se démarque notamment par ses valeurs de Fst qui sont supérieures aux autres lors de comparaisons entre populations (du fait potentiellement d'une sélection positive liée à de  la sélection naturelle ou d'une adaptation locale par exemples).   
 
-   **_5. Donnez un exemple d'organisme marin chez lequel des analyses génomiques ont détecté des îlots de différenciation._**
+**_5. Donnez un exemple d'organisme marin chez lequel des analyses génomiques ont détecté des îlots de différenciation._**
 
 Un ilot de différenciation a été détecté chez le Bar en comparant des populations provenant de l'Atlantique et de la Mediterranée. Cette région du génome présentait un fort Fst témoignage d'un signal probable de sélection positive. 
 
