@@ -503,25 +503,25 @@ Ce graphe permet de montrer les valeurs de Fst obtenues pour chaque locus entre 
 
 ## Part 6 — Interpretation des concepts
 
-   **_1. Quelle est la différence entre la couverture et la profondeur de couverture?_** 
+**_1. Quelle est la différence entre la couverture et la profondeur de couverture?_** 
    
  - Couverture : Proportion du génome ou des loci cibles qui est effectivement séquencée au moins une fois. Mesure l’étendue du génome couvert par les lectures.
  - Profondeur de couverture : Nombre moyen de lectures qui couvrent chaque position ou locus. Elle indique la redondance des lectures pour chaque site, ce qui influence la fiabilité des appels de variants (plus une position est lue de fois, plus on est sûr que le variant observé est réel et pas une erreur de séquençage).
 
-   **_2. Pourquoi les jeux de données RADseq contiennent-ils de nombreux loci avec des données manquantes ?_**
+**_2. Pourquoi les jeux de données RADseq contiennent-ils de nombreux loci avec des données manquantes ?_**
 
 - La variation dans la couverture de séquençage entre individus contribue aux données manquantes.
 - RADseq séquence seulement les régions adjacentes aux sites de restriction, ces sites peuvent varier entre individus.
 - Mutations ou polymorphismes aux sites de restriction ? (empecherait ligation des adaptateurs --> l’absence de certaines séquences dans certains individus)
     
-   **_3. Pourquoi est-il important d'appliquer un filtrage SNP avant les analyses de génomique des populations ?_**
+**_3. Pourquoi est-il important d'appliquer un filtrage SNP avant les analyses de génomique des populations ?_**
 
 Il important et même nécessaire d'appliquer des filtres sur les SNPs pour les analyses en génomique afin de :  
 - n'avoir que les séquences des individus que l'on souhaite étudier (et non pas des contaminants, fragments chimériques dûs à la PCR, séquences d'adapatateurs uniquement par exemples)
 - avoir des séquences représentatives de la diversité réelle au sein de la population ou entre populations (éviter la surestimation du polymorphisme du fait d'erreurs de PCRs, meilleure estimation des fréquences alléliques)  
 - garder des informations de qualité (enlever les séquences de moins bonnes quallités ne permettant pas d'être sûrs permet de réduire les temps de calculs). 
    
-   **_4. Qu'est-ce qu'un outlier locus ? Donnez une définition tirée du CM1._**
+**_4. Qu'est-ce qu'un outlier locus ? Donnez une définition tirée du CM1._**
 
 Un locus outlier est un locus qui se comporte différemment de la majorité du génome, il se démarque notamment par ses valeurs de Fst qui sont supérieures aux autres lors de comparaisons entre populations (du fait potentiellement d'une sélection positive liée à de  la sélection naturelle ou d'une adaptation locale par exemples). 
 
