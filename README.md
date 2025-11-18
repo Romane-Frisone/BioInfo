@@ -257,7 +257,7 @@ On souhaite préparer le génome de référence pour permettre un alignement rap
 ```
 bwa-mem2 index Reference_genome_chrI.fasta 
 ```
-**_2. Mapper chaque fichier FASTQ démultiplexé_**
+**_2. Mapper chaque fichier FASTQ démultiplexé_**  
 Autrement dit, on soihaite aligner chaque FASTQ démultiplexé sur le génome de référence.
 ```
 bwa-mem2 mem Reference_genome_chrI.fasta BearPaw1_trimmed.fastq > BearPaw1.sam
