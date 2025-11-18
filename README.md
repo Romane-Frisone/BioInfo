@@ -251,14 +251,126 @@ Les 4 premiers nucléotides (correspondants aux Barcodes) sont retirés. En util
 ##  Partie 4 — Alignement sur un génome de référence
 **Goal:** Comprendre les notions de base de l’indexation et de l’alignement.
 
-**_1._**
-**_1._**
-**_1._**
-**_1._**
+**_1. Indexer la référence_**
+
+On souhaite préparer le génome de référence pour permettre un alignement rapide et efficace des reads.
+```
+bwa-mem2 index Reference_genome_chrI.fasta 
+```
+**_2. Mapper chaque fichier FASTQ démultiplexé_**
+Autrement dit, on soihaite aligner chaque FASTQ démultiplexé sur le génome de référence.
+```
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw1_trimmed.fastq > BearPaw1.sam
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw2_trimmed.fastq > BearPaw2.sam
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw3_trimmed.fastq > BearPaw3.sam
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw4_trimmed.fastq > BearPaw4.sam
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw5_trimmed.fastq > BearPaw5.sam
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw6_trimmed.fastq > BearPaw6.sam
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw7_trimmed.fastq > BearPaw7.sam
+bwa-mem2 mem Reference_genome_chrI.fasta BearPaw8_trimmed.fastq > BearPaw8.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough1_trimmed.fastq > RabbitSlough1.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough2_trimmed.fastq > RabbitSlough2.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough3_trimmed.fastq > RabbitSlough3.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough4_trimmed.fastq > RabbitSlough4.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough5_trimmed.fastq > RabbitSlough5.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough6_trimmed.fastq > RabbitSlough6.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough7_trimmed.fastq > RabbitSlough7.sam
+bwa-mem2 mem Reference_genome_chrI.fasta RabbitSlough8_trimmed.fastq > RabbitSlough8.sam
+```
+**_3. Convertir le fichier d’alignement SAM en BAM, trier le fichier BAM, puis créer un index du BAM trié._**
+```
+samtools view -bS BearPaw1.sam > BearPaw1.bam
+samtools sort BearPaw1.bam -o BearPaw1_sorted.bam
+samtools index BearPaw1_sorted.bam
+
+samtools view -bS BearPaw2.sam > BearPaw2.bam
+samtools sort BearPaw2.bam -o BearPaw2_sorted.bam
+samtools index BearPaw2_sorted.bam
+
+samtools view -bS BearPaw3.sam > BearPaw3.bam
+samtools sort BearPaw3.bam -o BearPaw3_sorted.bam
+samtools index BearPaw3_sorted.bam
+
+samtools view -bS BearPaw4.sam > BearPaw4.bam
+samtools sort BearPaw4.bam -o BearPaw4_sorted.bam
+samtools index BearPaw4_sorted.bam
+
+samtools view -bS BearPaw5.sam > BearPaw5.bam
+samtools sort BearPaw5.bam -o BearPaw5_sorted.bam
+samtools index BearPaw5_sorted.bam
+
+samtools view -bS BearPaw6.sam > BearPaw6.bam
+samtools sort BearPaw6.bam -o BearPaw6_sorted.bam
+samtools index BearPaw6_sorted.bam
+
+samtools view -bS BearPaw7.sam > BearPaw7.bam
+samtools sort BearPaw7.bam -o BearPaw7_sorted.bam
+samtools index BearPaw7_sorted.bam
+
+samtools view -bS BearPaw8.sam > BearPaw8.bam
+samtools sort BearPaw8.bam -o BearPaw8_sorted.bam
+samtools index BearPaw8_sorted.bam
+
+samtools view -bS RabbitSlough1.sam > RabbitSlough1.bam
+samtools sort RabbitSlough1.bam -o RabbitSlough1_sorted.bam
+samtools index RabbitSlough1_sorted.bam
+
+samtools view -bS RabbitSlough2.sam > RabbitSlough2.bam
+samtools sort RabbitSlough2.bam -o RabbitSlough2_sorted.bam
+samtools index RabbitSlough2_sorted.bam
+
+samtools view -bS RabbitSlough3.sam > RabbitSlough3.bam
+samtools sort RabbitSlough3.bam -o RabbitSlough3_sorted.bam
+samtools index RabbitSlough3_sorted.bam
+
+samtools view -bS RabbitSlough4.sam > RabbitSlough4.bam
+samtools sort RabbitSlough4.bam -o RabbitSlough4_sorted.bam
+samtools index RabbitSlough4_sorted.bam
+
+samtools view -bS RabbitSlough5.sam > RabbitSlough5.bam
+samtools sort RabbitSlough5.bam -o RabbitSlough5_sorted.bam
+samtools index RabbitSlough5_sorted.bam
+
+samtools view -bS RabbitSlough6.sam > RabbitSlough6.bam
+samtools sort RabbitSlough6.bam -o RabbitSlough6_sorted.bam
+samtools index RabbitSlough6_sorted.bam
+
+samtools view -bS RabbitSlough7.sam > RabbitSlough7.bam
+samtools sort RabbitSlough7.bam -o RabbitSlough7_sorted.bam
+samtools index RabbitSlough7_sorted.bam
+
+samtools view -bS RabbitSlough8.sam > RabbitSlough8.bam
+samtools sort RabbitSlough8.bam -o RabbitSlough8_sorted.bam
+samtools index RabbitSlough8_sorted.bam
+```
+view -bS :  transforme le fichier SAM en BAM (la version binaire moins lourde et plus pratique pour les calculs mais pas lisible par l’homme)  
+sort : trie les reads par position sur le génome  
+index : crée un index pour accéder rapidement aux reads (fichier BAI pour BAM Index)
+
+**_4. Calculer les statistiques de mapping_**
+```
+samtools flagstat BearPaw1_sorted.bam
+samtools flagstat BearPaw2_sorted.bam
+samtools flagstat BearPaw3_sorted.bam
+samtools flagstat BearPaw4_sorted.bam
+samtools flagstat BearPaw5_sorted.bam
+samtools flagstat BearPaw6_sorted.bam
+samtools flagstat BearPaw7_sorted.bam
+samtools flagstat BearPaw8_sorted.bam
+samtools flagstat RabbitSlough1_sorted.bam
+samtools flagstat RabbitSlough2_sorted.bam
+samtools flagstat RabbitSlough3_sorted.bam
+samtools flagstat RabbitSlough4_sorted.bam
+samtools flagstat RabbitSlough5_sorted.bam
+samtools flagstat RabbitSlough6_sorted.bam
+samtools flagstat RabbitSlough7_sorted.bam
+samtools flagstat RabbitSlough8_sorted.bam
+```
+On s'attend a environ 80% de reads qui matchent. Donc si on a 10000 reads, on s'attend à 8000 matchs. Et sachant qu'on a un seul chromosome, on s'attend à ce qu'il n'y ait plus que 10% qui matchent donc environ 800.  
+C'est l'ordre de grandeur que l'on obtient !  
 
 
-A FINIR :)       (partie 4 + rapper Barcoding dans partie 3) 
-Bonne nuit !  
+
 
 
 ## Partie 5 — Appel des SNP / Variant calling
