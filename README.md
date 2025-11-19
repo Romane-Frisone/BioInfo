@@ -81,7 +81,7 @@ Il y a donc **16 barcodes** dans ce fichier.
 
 ```
 cp SRR034310_10pc.fastq ./fastqc_v0.12.1/FastQC/ # copie le fichier de donnée dans le dossier de FastQC
-cd fast/fastqc_v0.12.1/FastQC/ # on se place dans le dossier FastQC pour faire tourner la fonction 
+cd fastqc_v0.12.1/FastQC/ # on se place dans le dossier FastQC pour faire tourner la fonction 
 ./fastqc SRR034310_10pc.fastq # on utilise fastqc sur notre jeu de données 
 ```    
 **_2.	Sur le github, en markdown:_**  
